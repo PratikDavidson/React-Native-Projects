@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import * as Yup from 'yup'
 import { Formik } from 'formik'
 import { Button, Divider } from 'react-native-elements'
+import validUrl from 'valid-url'
 
 const PLACEHOLDER_IMG = 'https://i0.wp.com/roadmap-tech.com/wp-content/uploads/2019/04/placeholder-image.jpg?resize=400%2C400&ssl=1'
 
@@ -11,12 +12,15 @@ const uploadPostSchema = Yup.object().shape({
     caption: Yup.string().max(2200,'Caption has reached the character limit.')
 })
 
-const FormikPostUploader = () => {
+const FormikPostUploader = ({navigation}) => {
     const [thumbnailUrl, setThumbnailUrl] = useState(PLACEHOLDER_IMG)
   return (
     <Formik
       initialValues={{ caption: '', imageUrl: '' }}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={(values) => {
+        console.log(values)
+        navigation.goBack()
+      }}
       validationSchema={uploadPostSchema}
       validateOnMount={true}
     >
@@ -27,7 +31,7 @@ const FormikPostUploader = () => {
             justifyContent: 'space-between',
             flexDirection:'row'
           }}>
-            <Image source={{ uri: thumbnailUrl?thumbnailUrl:PLACEHOLDER_IMG }} style={{width:100,height:100}} />
+            <Image source={{ uri: validUrl.isUri(thumbnailUrl)?thumbnailUrl:PLACEHOLDER_IMG }} style={{width:100,height:100}} />
             <View style={{flex:1,marginLeft:12}}>
               <TextInput
                 style={{color:'white',fontSize:20}}

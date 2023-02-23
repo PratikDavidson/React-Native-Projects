@@ -6,10 +6,10 @@ import Post from '../components/home/Post'
 import Stories from '../components/home/Stories'
 import { POSTS } from '../data/post'
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
     return (
         <SafeAreaView style={styles.homescreen}>
-            <Header />
+            <Header navigation={ navigation } />
             <Stories />
             <ScrollView>
                 {POSTS.map((post, index) => (
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     homescreen: {
         backgroundColor: 'black',
         flex: 1,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 //For Android
     }
 })
 export default HomeScreen
