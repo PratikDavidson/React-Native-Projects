@@ -1,8 +1,8 @@
 import { View, Image, Text, StyleSheet } from "react-native";
 import React from "react";
-import LoginForm from "../components/loginScreen/LoginForm";
+import SignupForm from "../components/signupScreen/SignupForm";
 
-const LoginScreen = ({ navigation }) => {
+const SignupScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -12,7 +12,7 @@ const LoginScreen = ({ navigation }) => {
             uri: "https://cdn-icons-png.flaticon.com/512/4923/4923005.png",
           }}
         />
-        <LoginForm navigation={navigation} />
+        <SignupForm navigation={navigation} />
       </View>
     </View>
   );
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default SignupScreen;
